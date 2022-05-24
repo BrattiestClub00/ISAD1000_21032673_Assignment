@@ -11,10 +11,38 @@ import java.util.Scanner;
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
-        startCompStringOp();
-        //startStringValid();
-        //startNumCheck();
-        //startStringCon();
+        Scanner keyboard = new Scanner(System.in);
+        int choice = 0;
+        do
+        {
+            System.out.println("\n\n1) Convert String to upper or lower case\n2) Identify wheter numeric values are in a given string");
+            System.out.println("3) Identify whether a given string is a valid number or not");
+            System.out.println("4) Remove any numbers from a string and then convert to upper or lower case\n0) Quit");
+            System.out.print("Enter number to make selection: ");
+            choice = keyboard.nextInt();
+            
+            switch(choice)
+            {
+                case 1:
+                    startStringCon();
+                    break;
+                case 2:
+                    startNumCheck();
+                    break;
+                case 3:
+                    startStringValid();
+                    break;
+                case 4:
+                    startCompStringOp();
+                    break;
+                default:
+                    System.out.println("\nEnding program");
+                    choice = 0;
+                    keyboard.close();
+
+            }
+
+        }while(choice != 0);
     }
 
     //This method runs the stringConversion method allowing for user input
@@ -32,7 +60,6 @@ public class ISAD1000_Project {
         {
             System.out.println(e);
         }
-        keyboard.close();
     }
 
     //This method converts a string to either upper or lower case
@@ -70,7 +97,6 @@ public class ISAD1000_Project {
         {
             System.out.println("String does not contain numbers");
         }
-        keyboard.close();
     }
 
     //This method checks whether numeric values are in a string provided by the user returns boolean value
@@ -94,7 +120,7 @@ public class ISAD1000_Project {
     public static void startStringValid()
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.print("\nInput: ");
+        System.out.print("\nEnter String you would like to check: ");
         String input = keyboard.nextLine();
         if(stringValid(input) == true)
         {
@@ -104,7 +130,6 @@ public class ISAD1000_Project {
         {
             System.out.println("String '" + input + "' is an invalid number!!");
         }
-        keyboard.close();
     }
 
     //This method identifies if a user provided string is a valid number or not, returning a boolean value to signify this
@@ -141,6 +166,7 @@ public class ISAD1000_Project {
         return outString;
     }
 
+    //This method starts the compountStringOp for the user
     public static void startCompStringOp()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -156,7 +182,6 @@ public class ISAD1000_Project {
         {
             System.out.println(e);
         }
-        keyboard.close();
     }
 
     //This method is compound String operations: It removes any numerical values in a user provided string
