@@ -1,5 +1,3 @@
-import javax.lang.model.util.ElementScanner6;
-
 /**************
  * Name: Noah Pengilly 21032673
  * Date: 24/05/2022
@@ -13,8 +11,9 @@ import java.util.Scanner;
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
-        startNumCheck();
-        startStringCon();
+        startStringValid();
+        //startNumCheck();
+        //startStringCon();
     }
 
     //This method runs the stringConversion methods allowing for user input
@@ -27,6 +26,7 @@ public class ISAD1000_Project {
         int choice = keyboard.nextInt();
 
         System.out.println("Result: " + stringConversion(inString, choice));
+        keyboard.close();
     }
 
     //This method converts a string to either upper or lower case
@@ -44,7 +44,7 @@ public class ISAD1000_Project {
         }
         else
         {
-            throw new IllegalArgumentException("Invalid choice: Please enter 1 or 2");
+            outString = "INVALID INPUT";
         }
 
         return outString;
@@ -57,6 +57,7 @@ public class ISAD1000_Project {
         System.out.print("\nEnter String you would like to check for numbers: ");
         String inString = keyboard.nextLine();
         checkForNumbers(inString);
+        keyboard.close();
     }
 
     //This method checks whether numeric values are in a string provided by the user
@@ -93,6 +94,37 @@ public class ISAD1000_Project {
         }
     }
 
+    public static void startStringValid()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("\nInput: ");
+        String input = keyboard.nextLine();
+        if(stringValid(input) == true)
+        {
+            System.out.println("String '" + input + "' is a valid number");
+        }
+        else
+        {
+            System.out.println("String '" + input + "' is an invalid number!!");
+        }
+        keyboard.close();
+    }
+
+    //This method identifies if a user provided string is a valid number or not, returning a boolean value to signify this
+    public static boolean stringValid(String inString)
+    {
+        boolean valid = false;
+        try{
+            Integer.parseInt(inString);
+            valid = true;
+        }
+        catch(Exception e)
+        {
+            valid = false;
+        }
+
+        return valid;
+    }
 
     
 }
