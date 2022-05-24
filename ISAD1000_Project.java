@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
-        
+        startCompStringOp();
         //startStringValid();
         //startNumCheck();
         //startStringCon();
@@ -25,8 +25,13 @@ public class ISAD1000_Project {
         String inString = keyboard.nextLine();
         System.out.print("\nEnter 1 for uppercase 2 for lowercase: ");
         int choice = keyboard.nextInt();
-
-        System.out.println("Result: " + stringConversion(inString, choice));
+        try{
+            System.out.println("Result: " + stringConversion(inString, choice));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
         keyboard.close();
     }
 
@@ -45,7 +50,7 @@ public class ISAD1000_Project {
         }
         else
         {
-            outString = "INVALID INPUT";
+            throw new IllegalArgumentException("Invalid choice: must be 1 or 2");
         }
 
         return outString;
@@ -136,10 +141,27 @@ public class ISAD1000_Project {
         return outString;
     }
 
+    public static void startCompStringOp()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter string you would like to operate on: ");
+        String inString = keyboard.nextLine();
+        System.out.print("\nEnter 1 for uppercase 2 for lowercase: ");
+        int choice = keyboard.nextInt();
+
+        try{
+            System.out.println("Result: " + compoundStringOp(inString, choice));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        keyboard.close();
+    }
 
     //This method is compound String operations: It removes any numerical values in a user provided string
             //It then converts the string to upper or lower case, again the users choice
-    public static String compoundStringOp(String inString)
+    public static String compoundStringOp(String inString, int choice)
     {
         String outString = "";
         
@@ -152,11 +174,12 @@ public class ISAD1000_Project {
             outString = inString;
         }
         
-
-
+        outString = stringConversion(outString, choice);    //Re-uses String conversion method
+        
         return outString;
     }
 
+    
 
     
 }
