@@ -9,7 +9,7 @@
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
-        
+        System.out.println("Hello World");
     }
 }
 
