@@ -7,10 +7,14 @@
 **************/
 
 import java.util.Scanner;
+import java.io.*;
 
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
+        String[] temp = readStructuredFile("readFile.txt");
+        readFileOperations(temp);
+        /*
         Scanner keyboard = new Scanner(System.in);
         int choice = 0;
         do
@@ -43,6 +47,7 @@ public class ISAD1000_Project {
             }
 
         }while(choice != 0);
+        */
     }
 
     //This module runs the stringConversion method allowing for user input
@@ -255,6 +260,74 @@ public class ISAD1000_Project {
         return result;
     }
     
+    //This module is for reading in a structure file as show by structuredFile.txt
+    public static String[] readStructuredFile(String fileName)
+    {
+        String[] fileContents = new String[6];
+        String fileLine;
+        String[] tempSplit;
+
+        try{
+            FileInputStream fileStream = new FileInputStream(fileName);
+            DataInputStream inputStream = new DataInputStream(fileStream);
+            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(inputStream));
+
+            while((fileLine = bufferRead.readLine()) != null)
+            {
+                if(!fileLine.startsWith("*"))
+                {
+                    tempSplit = fileLine.split(":");
+                    switch(tempSplit[0].trim())
+                    {
+                        case "String 1":
+                            fileContents[0] = tempSplit[1].trim();
+                            break;
+                        case "String 2":
+                            fileContents[1] = tempSplit[1].trim();
+                            break;
+                        case "String 3":
+                            fileContents[2] = tempSplit[1].trim();
+                            break;
+                        case "String 4":
+                            fileContents[3] = tempSplit[1].trim();
+                            break;
+                        case "Integer 1":
+                            fileContents[4] = tempSplit[1].trim();
+                            break;
+                        case "Integer 2":
+                            fileContents[5] = tempSplit[1].trim();
+                            break;
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+        return fileContents;
+    }
+
+    //This module is for readStructuredFile, it demostrates different modules with the strings provided
+    public static void readFileOperations(String[] temp)
+    {
+        String str1 = temp[0];
+        String str2 = temp[1];
+        String str3 = temp[2];
+        String str4 = temp[3];
+        double dub1 = Double.parseDouble(temp[4]);
+        double dub2 = Double.parseDouble(temp[5]);
+
+        System.out.println("\nConvert '" + str1 + "' \nTo lower case: " + stringConversion(str1, 2));
+        System.out.println("\nDoes the String'" + str2 + "'\nContain numbers? " + checkForNumbers(str2));
+        System.out.println("\nIs '" + str3 + "' a valid number: " + stringValid(str3));
+        System.out.println("\nRemove numbers and convert to lowercase for string:\n'" + str4 + "'\nResult: " + compoundStringOp(str4, 2));
+        
+        System.out.println("\nConvert: " + dub1 + " metres, to feet\nResult: " + lengthConversion(dub1, 1));
+        System.out.println("\nConvert: " + dub2 + " centimetres, to inches\nResult: " + lengthConversion(dub2, 3));
+    }
+
 }
     
 
