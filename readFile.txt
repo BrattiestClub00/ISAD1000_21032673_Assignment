@@ -1,0 +1,28 @@
+* This is the input file for ISAD1000_Project
+* When reading the file it ignores '*'
+* This file aims to test String conversion category 1a
+*   Check for numbers category 1b
+*   Check if string is valid number category 1c
+*   Remove numbers convert case category 1d
+*   and Convert length category 2a
+* The format of a read file should be as below
+* 
+* String 1 case conversion
+* String 2 Identify whether numeric values are in a given string
+* String 3 Identify whether a given string is a valid number or not
+* String 4 Remove any numeric values in a given string and then convert
+*   the string to upper case or lower case
+*
+* Integer 1 Converting a number which represents a length given in metres
+*   to feet and vice versa and centimetre to inches and vice versa
+*   Integer 1: Metres to feet
+*   Integer 2: centimetres to inces
+*
+*
+String 1: CONVERT THIS STRING TO LOWERCASE
+String 2: 1D3Nt7fy wh3th3r numerical V4lu3s are 1n 5trin9
+String 3: V4l1d Num63r
+String 4: 1D3NT7FY WH3TH3R NUMERICAL V4lU3S ARE 1N 5TRIN9
+*
+Integer 1: 1000
+Integer 2: 815.34
