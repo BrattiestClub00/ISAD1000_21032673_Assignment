@@ -20,7 +20,7 @@ public class ISAD1000_Project {
             System.out.println("4) Remove any numbers from a string and then convert to upper or lower case\n0) Quit");
             System.out.print("Enter number to make selection: ");
             choice = keyboard.nextInt();
-            
+
             switch(choice)
             {
                 case 1:
@@ -45,7 +45,7 @@ public class ISAD1000_Project {
         }while(choice != 0);
     }
 
-    //This method runs the stringConversion method allowing for user input
+    //This module runs the stringConversion method allowing for user input
     public static void startStringCon()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -62,7 +62,7 @@ public class ISAD1000_Project {
         }
     }
 
-    //This method converts a string to either upper or lower case
+    //This module converts a string to either upper or lower case
     //The user is able to choose which conversion they wold like to do by entering '1' for uppercase or '2' for lowercase
     public static String stringConversion(String inString, int choice)
     {
@@ -83,7 +83,7 @@ public class ISAD1000_Project {
         return outString;
     }
 
-    //This method runs the checkForNumbers method allowing for user input
+    //This module runs the checkForNumbers method allowing for user input
     public static void startNumCheck()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -99,7 +99,7 @@ public class ISAD1000_Project {
         }
     }
 
-    //This method checks whether numeric values are in a string provided by the user returns boolean value
+    //This module checks whether numeric values are in a string provided by the user returns boolean value
     public static boolean checkForNumbers(String inString)
     {
         boolean containsNumbers = false;
@@ -116,7 +116,7 @@ public class ISAD1000_Project {
         return containsNumbers;
     }
 
-    //This method runs the stringValid method allowing for user input
+    //This module runs the stringValid method allowing for user input
     public static void startStringValid()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -132,7 +132,7 @@ public class ISAD1000_Project {
         }
     }
 
-    //This method identifies if a user provided string is a valid number or not, returning a boolean value to signify this
+    //This module identifies if a user provided string is a valid number or not, returning a boolean value to signify this
     public static boolean stringValid(String inString)
     {
         boolean valid = false;
@@ -148,7 +148,7 @@ public class ISAD1000_Project {
         return valid;
     }
 
-    //This method removes numbers from a string and returns the string, this method is used for compoundStringOp method
+    //This module removes numbers from a string and returns the string, this method is used for compoundStringOp method
     public static String removeNumbersFromString(String inString)
     {
         String outString = "";
@@ -166,7 +166,7 @@ public class ISAD1000_Project {
         return outString;
     }
 
-    //This method starts the compountStringOp for the user
+    //This module starts the compountStringOp for the user
     public static void startCompStringOp()
     {
         Scanner keyboard = new Scanner(System.in);
@@ -184,7 +184,7 @@ public class ISAD1000_Project {
         }
     }
 
-    //This method is compound String operations: It removes any numerical values in a user provided string
+    //This module is compound String operations: It removes any numerical values in a user provided string
             //It then converts the string to upper or lower case, again the users choice
     public static String compoundStringOp(String inString, int choice)
     {
@@ -199,13 +199,61 @@ public class ISAD1000_Project {
             outString = inString;
         }
         
-        outString = stringConversion(outString, choice);    //Re-uses String conversion method
+        outString = stringConversion(outString, choice);    //Re-uses String conversion module
         
         return outString;
     }
 
     
+    //This module starts the lengthConversion module so that the user can provide an input
+    public static void startNumCon()
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("\nEnter number you would like to convert: ");
+        double inNum = keyboard.nextDouble();
+        System.out.print("\nWhat unit of measure is this number:\n1) Metres\n2) Feet\n3) Centimetres\n4) Inches\nEnter selection: ");
+        int unitOfMeasure = keyboard.nextInt();
 
+        try{
+            System.out.println("Result: " + lengthConversion(inNum, unitOfMeasure));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+
+
+    //This module is for category 2a. This module takes in a number that represents a length value.
+        //The unit of measure is signified by the unitOfMeasure value.
+        //If the unitOfMeasure is 1 it is metres and is converted to feet
+        //If the unitOfMeasure is 2 it is feet and is converted to metres
+        //If the unitOfMeasure is 3 it is centimetres and is converted to inches
+        //If the unitOfMeasure is 4 it is inches and is converted to centimetres
+    public static double lengthConversion(double inNum, int unitOfMeasure)
+    {
+        double result = 0;
+        switch(unitOfMeasure)
+        {
+            case 1: //Metres to Feet
+                result = inNum * 3.281;
+                break;
+            case 2: //Feet to Metres
+                result = inNum / 3.281;
+                break;
+            case 3: // Centimetres to Inches
+                result = inNum / 2.54;
+                break;
+            case 4: //Inches to Centimetres
+                result = inNum * 2.54;
+                break;
+            default:
+                result = inNum;
+                throw new IllegalArgumentException("Invalud unifOfMeasure");
+        }
+        return result;
+    }
     
 }
     
