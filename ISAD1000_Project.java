@@ -12,16 +12,16 @@ import java.io.*;
 public class ISAD1000_Project {
     public static void main(String[] args)
     {
-        String[] temp = readStructuredFile("readFile.txt");
-        readFileOperations(temp);
-        /*
         Scanner keyboard = new Scanner(System.in);
+        Scanner keyBoard = new Scanner(System.in);
         int choice = 0;
+        String fileName;
         do
         {
             System.out.println("\n\n1) Convert String to upper or lower case\n2) Identify wheter numeric values are in a given string");
             System.out.println("3) Identify whether a given string is a valid number or not");
-            System.out.println("4) Remove any numbers from a string and then convert to upper or lower case\n0) Quit");
+            System.out.println("4) Remove any numbers from a string and then convert to upper or lower case");
+            System.out.println("5) Read a structured file\n6) Read an ordinary file\n0) Quit");
             System.out.print("Enter number to make selection: ");
             choice = keyboard.nextInt();
 
@@ -39,6 +39,17 @@ public class ISAD1000_Project {
                 case 4:
                     startCompStringOp();
                     break;
+                case 5:
+                    System.out.print("\nEnter file name: ");
+                    fileName = keyBoard.nextLine();
+                    String[] temp = readStructuredFile(fileName);
+                    readFileOperations(temp);
+                    break;
+                case 6:
+                    System.out.print("\nEnter file name: ");
+                    fileName = keyBoard.nextLine();
+                    readOrdinaryFile(fileName);
+                    break;
                 default:
                     System.out.println("\nEnding program");
                     choice = 0;
@@ -47,7 +58,6 @@ public class ISAD1000_Project {
             }
 
         }while(choice != 0);
-        */
     }
 
     //This module runs the stringConversion method allowing for user input
@@ -328,6 +338,30 @@ public class ISAD1000_Project {
         System.out.println("\nConvert: " + dub2 + " centimetres, to inches\nResult: " + lengthConversion(dub2, 3));
     }
 
+    public static void readOrdinaryFile(String fileName)
+    {
+        String tempString;
+        try{
+            File file = new File(fileName);
+            Scanner fileReader = new Scanner(file);
+
+            while(fileReader.hasNextLine())
+            {
+                tempString = fileReader.nextLine();
+                System.out.println("\n\nOperating on String: " + tempString);
+                System.out.println("\nConverted to uppercase: " + stringConversion(tempString, 1));
+                System.out.println("Check for numbers: Contains numbers: " + checkForNumbers(tempString));
+                System.out.println("Check if valid number: " + stringValid(tempString));
+                System.out.println("Remove numbers and convert to lowercase: " + compoundStringOp(tempString, 2));
+            }
+            fileReader.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }
 }
     
 
