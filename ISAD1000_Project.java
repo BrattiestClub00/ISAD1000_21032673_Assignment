@@ -82,6 +82,10 @@ public class ISAD1000_Project {
     public static String stringConversion(String inString, int choice)
     {
         String outString = "";
+        if(stringValid(inString) == true)
+        {
+            throw new IllegalArgumentException("Cannot convert string: String is a number!");
+        }
         if(choice == 1)
         {
             outString = inString.toUpperCase();
@@ -338,6 +342,8 @@ public class ISAD1000_Project {
         System.out.println("\nConvert: " + dub2 + " centimetres, to inches\nResult: " + lengthConversion(dub2, 3));
     }
 
+    //This module is for reading an ordinary text file. The file does not need to be structured in any particular way.
+        //Each line of the file is operated on as a single variable
     public static void readOrdinaryFile(String fileName)
     {
         String tempString;
@@ -349,17 +355,55 @@ public class ISAD1000_Project {
             {
                 tempString = fileReader.nextLine();
                 tempString = tempString.trim();
-                System.out.println("\n\nOperating on String: " + tempString);
-                System.out.println("\nConverted to uppercase: " + stringConversion(tempString, 1));
-                System.out.println("Check for numbers: Contains numbers: " + checkForNumbers(tempString));
-                System.out.println("Check if valid number: " + stringValid(tempString));
-                System.out.println("Remove numbers and convert to lowercase: " + compoundStringOp(tempString, 2));
+                try{
+                    System.out.println("\n\nOperating on String: " + tempString);
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+
+                try{
+                    System.out.println("\nConverted to uppercase: " + stringConversion(tempString, 1));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+
+                try{
+                    System.out.println("Check for numbers: Contains numbers: " + checkForNumbers(tempString));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+
+                try{
+                    System.out.println("Check if valid number: " + stringValid(tempString));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+                
+                try{
+                    System.out.println("Remove numbers and convert to lowercase: " + compoundStringOp(tempString, 2));
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+                
+                
+                
+                
             }
             fileReader.close();
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }
