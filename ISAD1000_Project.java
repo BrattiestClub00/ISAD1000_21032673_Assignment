@@ -348,6 +348,7 @@ public class ISAD1000_Project {
             while(fileReader.hasNextLine())
             {
                 tempString = fileReader.nextLine();
+                tempString = tempString.trim();
                 System.out.println("\n\nOperating on String: " + tempString);
                 System.out.println("\nConverted to uppercase: " + stringConversion(tempString, 1));
                 System.out.println("Check for numbers: Contains numbers: " + checkForNumbers(tempString));
