@@ -21,7 +21,8 @@ public class ISAD1000_Project {
             System.out.println("\n\n1) Convert String to upper or lower case\n2) Identify wheter numeric values are in a given string");
             System.out.println("3) Identify whether a given string is a valid number or not");
             System.out.println("4) Remove any numbers from a string and then convert to upper or lower case");
-            System.out.println("5) Read a structured file\n6) Read an ordinary file\n0) Quit");
+            System.out.println("5) Length conversion");
+            System.out.println("6) Read a structured file\n7) Read an ordinary file\n0) Quit");
             System.out.print("Enter number to make selection: ");
             choice = keyboard.nextInt();
 
@@ -40,12 +41,15 @@ public class ISAD1000_Project {
                     startCompStringOp();
                     break;
                 case 5:
+                    startNumCon();
+                    break;
+                case 6:
                     System.out.print("\nEnter file name: ");
                     fileName = keyBoard.nextLine();
                     String[] temp = readStructuredFile(fileName);
                     readFileOperations(temp);
                     break;
-                case 6:
+                case 7:
                     System.out.print("\nEnter file name: ");
                     fileName = keyBoard.nextLine();
                     readOrdinaryFile(fileName);
@@ -82,10 +86,11 @@ public class ISAD1000_Project {
     public static String stringConversion(String inString, int choice)
     {
         String outString = "";
-        if(stringValid(inString) == true)
+        if(stringValid(inString) == true)   //If the string is a valid number then it cant be converted
         {
             throw new IllegalArgumentException("Cannot convert string: String is a number!");
         }
+
         if(choice == 1)
         {
             outString = inString.toUpperCase();
@@ -227,18 +232,27 @@ public class ISAD1000_Project {
     //This module starts the lengthConversion module so that the user can provide an input
     public static void startNumCon()
     {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.print("\nEnter number you would like to convert: ");
-        double inNum = keyboard.nextDouble();
-        System.out.print("\nWhat unit of measure is this number:\n1) Metres\n2) Feet\n3) Centimetres\n4) Inches\nEnter selection: ");
-        int unitOfMeasure = keyboard.nextInt();
+        double inNum = 0;
+        int unitOfMeasure = 0;
+
+        try{
+            Scanner keyboard = new Scanner(System.in);
+            System.out.print("\nEnter number you would like to convert: ");
+            inNum = keyboard.nextDouble();
+            System.out.print("\nWhat unit of measure is this number:\n1) Metres\n2) Feet\n3) Centimetres\n4) Inches\nEnter selection: ");
+            unitOfMeasure = keyboard.nextInt();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
 
         try{
             System.out.println("Result: " + lengthConversion(inNum, unitOfMeasure));
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -269,7 +283,7 @@ public class ISAD1000_Project {
                 break;
             default:
                 result = inNum;
-                throw new IllegalArgumentException("Invalud unifOfMeasure");
+                throw new IllegalArgumentException("Invalud unitOfMeasure");
         }
         return result;
     }
@@ -333,14 +347,55 @@ public class ISAD1000_Project {
         double dub1 = Double.parseDouble(temp[4]);
         double dub2 = Double.parseDouble(temp[5]);
 
-        System.out.println("\nConvert '" + str1 + "' \nTo lower case: " + stringConversion(str1, 2));
-        System.out.println("\nDoes the String'" + str2 + "'\nContain numbers? " + checkForNumbers(str2));
-        System.out.println("\nIs '" + str3 + "' a valid number: " + stringValid(str3));
-        System.out.println("\nRemove numbers and convert to lowercase for string:\n'" + str4 + "'\nResult: " + compoundStringOp(str4, 2));
+        try{
+            System.out.println("\nConvert '" + str1 + "' \nTo lower case: " + stringConversion(str1, 2));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try{
+            System.out.println("\nDoes the String'" + str2 + "'\nContain numbers? " + checkForNumbers(str2));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
         
-        System.out.println("\nConvert: " + dub1 + " metres, to feet\nResult: " + lengthConversion(dub1, 1));
-        System.out.println("\nConvert: " + dub2 + " centimetres, to inches\nResult: " + lengthConversion(dub2, 3));
-    }
+        try{
+            System.out.println("\nIs '" + str3 + "' a valid number: " + stringValid(str3));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    
+        try{
+            System.out.println("\nRemove numbers and convert to lowercase for string:\n'" + str4 + "'\nResult: " + compoundStringOp(str4, 2));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    
+        try{
+            System.out.println("\nConvert: " + dub1 + " metres, to feet\nResult: " + lengthConversion(dub1, 1));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    
+        try{
+            System.out.println("\nConvert: " + dub2 + " centimetres, to inches\nResult: " + lengthConversion(dub2, 3));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        }
 
     //This module is for reading an ordinary text file. The file does not need to be structured in any particular way.
         //Each line of the file is operated on as a single variable
