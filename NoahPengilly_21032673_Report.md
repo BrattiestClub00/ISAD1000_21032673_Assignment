@@ -94,7 +94,7 @@ This module takes in a string, removes numbers from the string using removeNumbe
 ![](compoundStringOp.PNG)
 
 
-### Boundary value analysis
+### Boundary value analysis:
 Module: lengthConversion()
 
 Imports: inNum (double), unitOfMeasure (Integer)
@@ -103,3 +103,23 @@ Exports: result (double)
 
 This module takes in a number representing number of (unitOfMeasure) in lenght. The unitOfMeasure is represented by a 1,2,3 or 4. 1 being metres will be converted to feet. 2 being feet will be converted to metres. 3 being centimetres will be converted to inches. 4 being inches will be converted to centimetres.
 ![](lengthConversion.PNG)
+
+
+## White-Box Testing:
+Two methods that would benefit from white-box testing include stringConversion() and stringValid()
+
+#### stringConversion():
+![](stringConversion_whiteTest.PNG)
+
+#### stringValid():
+![](StringValid_whiteTest.PNG)
+
+
+## Test Implementation:
+
+
+
+
+## Ethics and Professionalism:
+A lack of ethical and professionalism when designing the code can result in harm to its users, authors and any other stakeholders of the code. The public could suffer from the user of the code if some of it has not been designed properly. An example of this could be financial loss where the code fails to identify a string which represents a monetary value as a number resulting in it not being counted. This could also damage the reputation of the program and thus the company that sells / distributes the faulty software, further effecting employees and shareholders. The software is obligated to protect the public, being the user of the software and any person whos assets (tangible or non-tangible) are effected, because improper results or errors in the program could result in the public to suffer a loss of there assets.
+
