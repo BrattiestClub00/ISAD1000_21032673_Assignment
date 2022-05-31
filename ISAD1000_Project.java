@@ -16,52 +16,61 @@ public class ISAD1000_Project {
         Scanner keyBoard = new Scanner(System.in);
         int choice = 0;
         String fileName;
-        do
+
+        if(args.length == 0)
         {
-            System.out.println("\n\n1) Convert String to upper or lower case\n2) Identify wheter numeric values are in a given string");
-            System.out.println("3) Identify whether a given string is a valid number or not");
-            System.out.println("4) Remove any numbers from a string and then convert to upper or lower case");
-            System.out.println("5) Length conversion");
-            System.out.println("6) Read a structured file\n7) Read an ordinary file\n0) Quit");
-            System.out.print("Enter number to make selection: ");
-            choice = keyboard.nextInt();
-
-            switch(choice)
+            do
             {
-                case 1:
-                    startStringCon();
-                    break;
-                case 2:
-                    startNumCheck();
-                    break;
-                case 3:
-                    startStringValid();
-                    break;
-                case 4:
-                    startCompStringOp();
-                    break;
-                case 5:
-                    startNumCon();
-                    break;
-                case 6:
-                    System.out.print("\nEnter file name: ");
-                    fileName = keyBoard.nextLine();
-                    String[] temp = readStructuredFile(fileName);
-                    readFileOperations(temp);
-                    break;
-                case 7:
-                    System.out.print("\nEnter file name: ");
-                    fileName = keyBoard.nextLine();
-                    readOrdinaryFile(fileName);
-                    break;
-                default:
-                    System.out.println("\nEnding program");
-                    choice = 0;
-                    keyboard.close();
+                System.out.println("\n\n1) Convert String to upper or lower case\n2) Identify wheter numeric values are in a given string");
+                System.out.println("3) Identify whether a given string is a valid number or not");
+                System.out.println("4) Remove any numbers from a string and then convert to upper or lower case");
+                System.out.println("5) Length conversion");
+                System.out.println("6) Read a structured file\n7) Read an ordinary file\n0) Quit");
+                System.out.print("Enter number to make selection: ");
+                choice = keyboard.nextInt();
 
-            }
+                switch(choice)
+                {
+                    case 1:
+                        startStringCon();
+                        break;
+                    case 2:
+                        startNumCheck();
+                        break;
+                    case 3:
+                        startStringValid();
+                        break;
+                    case 4:
+                        startCompStringOp();
+                        break;
+                    case 5:
+                        startNumCon();
+                        break;
+                    case 6:
+                        System.out.print("\nEnter file name: ");
+                        fileName = keyBoard.nextLine();
+                        String[] temp = readStructuredFile(fileName);
+                        readFileOperations(temp);
+                        break;
+                    case 7:
+                        System.out.print("\nEnter file name: ");
+                        fileName = keyBoard.nextLine();
+                        readOrdinaryFile(fileName);
+                        break;
+                    default:
+                        System.out.println("\nEnding program");
+                        choice = 0;
+                        keyboard.close();
 
-        }while(choice != 0);
+                }
+
+            }while(choice != 0);
+        }
+        else if(args[0].equalsIgnoreCase("-t"))
+        {
+            System.out.println("\n\n**** Testing modules ****\n");
+            testingModules();
+        }
     }
 
     //This module runs the stringConversion method allowing for user input
@@ -462,6 +471,360 @@ public class ISAD1000_Project {
         }
 
     }
+
+
+    public static void testingModules()
+    {
+        String outString = "";
+        int testPassed = 0;
+        boolean tempBool = false;
+        double tempDouble = 0;
+        
+        System.out.println("** Testing stringConversion() **");
+        try{
+            System.out.println("inString = '2673', choice = '1'");
+            System.out.println(stringConversion("2673", 1));
+            System.out.println("FAILED");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Test: PASSED");
+            testPassed++;
+        }
+
+        try{
+            System.out.println("inString = 'Pengilly', choice = '1'");
+            outString = stringConversion("Pengilly", 1);
+            assert outString.equals("PENGILLY");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY', choice = '1'");
+            outString = stringConversion("Noah Graeme PENGILLY", 1);
+            assert outString.equals("NOAH GRAEME PENGILLY");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+        
+        
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY', choice = '2'");
+            outString = stringConversion("Noah Graeme PENGILLY", 2);
+            assert outString.equals("noah graeme pengilly");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        
+        try{
+            System.out.println("inString = 'Fantastic Beasts', choice = '2'");
+            outString = stringConversion("Fantastic Beasts", 2);
+            assert outString.equals("fantastic beasts");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+
+
+
+
+        System.out.println("\n\n** Testing checkForNumbers() **");
+        
+
+        try{
+            System.out.println("inString = '2673'");
+            tempBool = checkForNumbers("2673");
+            assert tempBool == true;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'Pengilly'");
+            tempBool = checkForNumbers("Pengilly");
+            assert tempBool == false;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY'");
+            tempBool = checkForNumbers("Noah Graeme PENGILLY");
+            assert tempBool == false;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        
+        try{
+            System.out.println("inString = 'The Batman 2'");
+            tempBool = checkForNumbers("The Batman 2");
+            assert tempBool == true;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+
+
+
+        System.out.println("\n\n** Testing stringValid() **");
+        try{
+            System.out.println("inString = '2673'");
+            tempBool = stringValid("2673");
+            assert tempBool == true;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'Pengilly'");
+            tempBool = stringValid("Pengilly");
+            assert tempBool == false;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+        
+
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY'");
+            tempBool = stringValid("Noah Graeme PENGILLY");
+            assert tempBool == false;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+        try{
+            System.out.println("inString = 'The Batman 2'");
+            tempBool = stringValid("The Batman 2");
+            assert tempBool == false;
+            System.out.println(tempBool + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+
+
+        System.out.println("\n\n** Testing removeNumbersFromString() **");
+        try{
+            System.out.println("inString = '2673'");
+            outString = removeNumbersFromString("2673");
+            assert outString.equals("");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'Pengilly'");
+            outString = removeNumbersFromString("Pengilly");
+            assert outString.equals("Pengilly");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY'");
+            outString = removeNumbersFromString("Noah Graeme PENGILLY");
+            assert outString.equals("Noah Graeme PENGILLY");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inString = 'The Batman 2'");
+            outString = removeNumbersFromString("The Batman 2");
+            assert outString.equals("The Batman ");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+
+
+
+        System.out.println("\n\n** Testing compoundStringOp() **");
+        try{
+            System.out.println("inString = '2673' choice = 1");
+            outString = compoundStringOp("2673", 1);
+            assert outString.equals("");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+        
+        try{
+            System.out.println("inString = 'Pengilly' choice = 1");
+            outString = compoundStringOp("Pengilly", 1);
+            assert outString.equals("PENGILLY");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        
+        try{
+            System.out.println("inString = 'Noah Graeme PENGILLY' choice = 2");
+            outString = compoundStringOp("Noah Graeme PENGILLY", 2);
+            assert outString.equals("noah graeme pengilly");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        
+        try{
+            System.out.println("inString = 'The Batman 2' choice = 1");
+            outString = compoundStringOp("The Batman 2", 1);
+            assert outString.equals("THE BATMAN ");
+            System.out.println(outString + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+
+
+
+
+        System.out.println("\n\n** Testing lengthConversion() **");
+        try{
+            System.out.println("inNum = 1000 (metres)");
+            tempDouble = lengthConversion(1000, 1);
+            assert tempDouble == 3281;
+            System.out.println(tempDouble + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inNum = 1000 (feet)");
+            tempDouble = lengthConversion(1000, 2);
+            assert tempDouble == 304.7851264858275;
+            System.out.println(tempDouble + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inNum = 1000 (centimetres)");
+            tempDouble = lengthConversion(1000, 3);
+            assert tempDouble == 393.7007874015748;
+            System.out.println(tempDouble + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+        try{
+            System.out.println("inNum = 1000 (inches)");
+            tempDouble = lengthConversion(1000, 4);
+            assert tempDouble == 2540;
+            System.out.println(tempDouble + " Test: PASSED");
+            testPassed++;
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Test: FAILED");
+        }
+
+
+        System.out.println("\n" + testPassed + " of 25: tests passed\n");
+    }
+
+
+
+
 }
     
 
