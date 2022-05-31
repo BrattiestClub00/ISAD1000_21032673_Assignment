@@ -4,6 +4,8 @@
 #### Practical Class: Wednesday 8am Bently Campus
 ## Introduction:
 For my assignment I have implemented all the category 1 code requirements as well as category 2a. While working on the code I have been saving it all to a gitHub repository. This has allowed the code from different stages to be reviewed and conduct version control of the code.
+
+
 ## Module descriptions:
 * startStringCon(): This module allows for user input taken from a keyboard before running the module stringConversion().
 
@@ -121,6 +123,21 @@ To test the code when running the code in command line to start the program type
 ![](testCodingSS.PNG)
 
 
-## Ethics and Professionalism:
-A lack of ethical and professionalism when designing the code can result in harm to its users, authors and any other stakeholders of the code. The public could suffer from the user of the code if some of it has not been designed properly. An example of this could be financial loss where the code fails to identify a string which represents a monetary value as a number resulting in it not being counted. This could also damage the reputation of the program and thus the company that sells / distributes the faulty software, further effecting employees and shareholders. The software is obligated to protect the public, being the user of the software and any person whos assets (tangible or non-tangible) are effected, because improper results or errors in the program could result in the public to suffer a loss of there assets.
+## Version Control:
+This entire assignment has been tracked using git version control. The git repository can be found on gitHub and it tracks each version of the code throughout its production. Most of the changes that were saved for each version were the development of each module and changes with touch ups and bug fixes. Version control allowed me to roll back to earlier versions when there were errors with my code allowing a fresh start on a problem.
 
+
+
+## Ethics and Professionalism:
+A lack of ethical and professionalism when designing the code can result in harm to its users, authors and any other stakeholders of the code. The public could suffer from the use of the code if some of it has not been designed properly. An example of this could be financial loss where the code fails to identify a string which represents a monetary value, as a number resulting in it not being counted. This could also damage the reputation of the program and thus the company that sells / distributes the faulty software, further effecting employees and shareholders. The software is obligated to protect the public, being the user of the software and any person whos assets (tangible or Intangible) are effected, because improper results or errors in the program could result in the public to suffer a loss of there assets. Tangible assets can include property or money. Intangible could be their reputation or private identity.
+
+Things that should be practices to avoid ethical and professional issues in the software project are described by the ACS Code of Professional Conduct. Two things from the code that should be practiced include, Honesty and Competence. 
+
+To be honest in the development of the program the developer / developers must "be honest in their representation of skills, knowledge, services and products" (ACS, 2014. ACS Code of Professional Conduct). This means that if the program is faulty and this is known by developers of the program they must be honest with users, or the company publishing / purchasing the program of the faults present and how it affects the users experience / outputs. As well as honest with their abilities to produce the program to the person who commissioned them the project, before starting work.
+
+Competence for a project is defined by the ACS code of professional conduct as "You will work competently and diligently for your stakeholders" This working to the standards set by stakeholders or employeers and presenting work that meet the standards of the task. This can also mean taking responsibility for work produced. This can mean that if the program results in issues for its users programmers could be held responsible as well.
+
+## Discussion:
+The program I have produced could be improved. This includes changes to how the program is testing, by providing more testing methods and a more modular design, rather than all test code in one module. The code I have made allows the user to enter a testing mode or general use mode. In general use mode it allows the user to make menu selections and try each module and then send them back to the menu until they quit the program. The testing mode runs the test module and outputs the results.
+
+Aside from the program more test cases for the testing portion of the report could have been included.
