@@ -116,8 +116,9 @@ Two methods that would benefit from white-box testing include stringConversion()
 
 
 ## Test Implementation:
-
-
+To test the code when running the code in command line to start the program type "java -ea ISAD1000_Project -t" This will enable assertions and start testing mode. Testing mode runs the module testingModules(). This modules tests the modules stringConversion(), checkForNumbers(), stringValid(), removeNumbersFromString(), compoundStringOp() and lengthConversion(). To test each module assertion is used to check that the results from the module are as expected. For each test in the testingModule of my code all tests passed. All the test data used for these tests is the same data used for the above black-box and white-box testing.
+![](TestImplementationChart.PNG)
+![](testCodingSS.PNG)
 
 
 ## Ethics and Professionalism:
