@@ -61,7 +61,7 @@ public class ISAD1000_Project {
                         System.out.println("\nEnding program");
                         choice = 0;
                         keyboard.close();
-
+                        keyBoard.close();
                 }
 
             }while(choice != 0);
@@ -482,7 +482,7 @@ public class ISAD1000_Project {
         
         System.out.println("** Testing stringConversion() **");
         try{
-            System.out.println("inString = '2673', choice = '1'");
+            System.out.println("inString = '2673', choice = 1");
             System.out.println(stringConversion("2673", 1));
             System.out.println("FAILED");
         }
@@ -493,7 +493,7 @@ public class ISAD1000_Project {
         }
 
         try{
-            System.out.println("inString = 'Pengilly', choice = '1'");
+            System.out.println("inString = 'Pengilly', choice = 1");
             outString = stringConversion("Pengilly", 1);
             assert outString.equals("PENGILLY");
             System.out.println(outString + " Test: PASSED");
@@ -506,7 +506,7 @@ public class ISAD1000_Project {
 
 
         try{
-            System.out.println("inString = 'Noah Graeme PENGILLY', choice = '1'");
+            System.out.println("inString = 'Noah Graeme PENGILLY', choice = 1");
             outString = stringConversion("Noah Graeme PENGILLY", 1);
             assert outString.equals("NOAH GRAEME PENGILLY");
             System.out.println(outString + " Test: PASSED");
@@ -519,7 +519,7 @@ public class ISAD1000_Project {
         
         
         try{
-            System.out.println("inString = 'Noah Graeme PENGILLY', choice = '2'");
+            System.out.println("inString = 'Noah Graeme PENGILLY', choice = 2");
             outString = stringConversion("Noah Graeme PENGILLY", 2);
             assert outString.equals("noah graeme pengilly");
             System.out.println(outString + " Test: PASSED");
@@ -532,7 +532,7 @@ public class ISAD1000_Project {
 
         
         try{
-            System.out.println("inString = 'Fantastic Beasts', choice = '2'");
+            System.out.println("inString = 'Fantastic Beasts', choice = 2");
             outString = stringConversion("Fantastic Beasts", 2);
             assert outString.equals("fantastic beasts");
             System.out.println(outString + " Test: PASSED");
@@ -542,6 +542,31 @@ public class ISAD1000_Project {
         {
             System.out.println("Test: FAILED");
         }
+
+
+        try{
+            System.out.println("inString = '123541' choice = 1");
+            outString = stringConversion("123541", 1);
+            System.out.println("Test: FAILED");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Test: PASSED");
+            testPassed++;
+        }
+
+
+        try{
+            System.out.println("inString = 'HeLl0 World' choice = 3");
+            outString = stringConversion("HeLl0 World", 3);
+            System.out.println("Test: FAILED");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Test: PASSED");
+            testPassed++;
+        }
+
 
 
 
@@ -604,6 +629,8 @@ public class ISAD1000_Project {
 
 
 
+
+
         System.out.println("\n\n** Testing stringValid() **");
         try{
             System.out.println("inString = '2673'");
@@ -658,6 +685,9 @@ public class ISAD1000_Project {
 
 
 
+
+
+
         System.out.println("\n\n** Testing removeNumbersFromString() **");
         try{
             System.out.println("inString = '2673'");
@@ -706,6 +736,9 @@ public class ISAD1000_Project {
         {
             System.out.println("Test: FAILED");
         }
+
+
+
 
 
 
@@ -769,6 +802,10 @@ public class ISAD1000_Project {
 
 
 
+
+
+
+
         System.out.println("\n\n** Testing lengthConversion() **");
         try{
             System.out.println("inNum = 1000 (metres)");
@@ -819,7 +856,7 @@ public class ISAD1000_Project {
         }
 
 
-        System.out.println("\n" + testPassed + " of 25: tests passed\n");
+        System.out.println("\n" + testPassed + " of 27: tests passed\n");
     }
 
 
